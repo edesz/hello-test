@@ -1,4 +1,4 @@
-pull_requests:
+pull_request_rules:
   - name: automatic merge when CI passes and 1 review
     conditions:
       - "#approved-reviews-by>=1"
@@ -8,7 +8,6 @@ pull_requests:
       merge:
         method: merge
 
-pull_request_rules:
   - name: automatic merge for PyUp pull requests
     conditions:
       - author=pyup-bot
