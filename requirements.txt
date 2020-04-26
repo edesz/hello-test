@@ -2,4 +2,4 @@ jupyter==1.0.0
 numpy==1.18.3
 pandas==1.0.3
 requests
-six
+six==1.14.0
