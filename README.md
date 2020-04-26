@@ -1,5 +1,5 @@
 # [`hello-test`](#hello-test)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dfdee3219d7742fd9196f132397cf254)](https://www.codacy.com/manual/edesz/hello-test?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=edesz/hello-test&amp;utm_campaign=Badge_Grade)
+[![Updates](https://pyup.io/repos/github/edesz/hello-test/shield.svg)](https://pyup.io/repos/github/edesz/hello-test/) [![Python 3](https://pyup.io/repos/github/edesz/hello-test/python-3-shield.svg)](https://pyup.io/repos/github/edesz/hello-test/)
 
-A toy repo.
+A dummy repository.
