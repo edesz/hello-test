@@ -1,5 +1,5 @@
 def show_msg():
-    print("hello")
+    return "hello"
 
 
 if __name__ == "__main__":
