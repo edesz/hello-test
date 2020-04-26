@@ -1,8 +1,8 @@
 pull_request_rules:
   - name: automatic merge for PyUp pull requests
     conditions:
-      - author=github-actions-bot
-      - status-success=CI / build (pull_request)
+      - author=pyup-bot
+      - "status-success=ci/github-actions[bot]: my_testing_job"
     actions:
       merge:
         method: merge
