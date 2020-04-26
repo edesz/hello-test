@@ -4,10 +4,10 @@ branch: master
 
 # Specify requirement file
 requirements:
-  - requirements.txt
-      # update all dependencies and pin them
-      update: all
-      pin: True
+    - requirements.txt:
+        # update all dependencies and pin them
+        update: all
+        pin: True
 
 # add a label to prs
 label_prs: empty
