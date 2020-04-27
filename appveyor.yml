@@ -9,4 +9,4 @@ install:
 
 test_script:
     - tox -e lint
-    - tox -e ci
+    - tox -e test
