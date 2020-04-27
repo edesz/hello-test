@@ -2,7 +2,7 @@ environment:
     matrix:
         - job_name: CI
           appveyor_build_worker_image: Ubuntu
-          TOXENV: py37
+        - TOXENV: py37
 
 build: off
 
