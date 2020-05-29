@@ -13,6 +13,7 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         args: --severity-threshold=high
+        command: monitor
     - uses: actions/setup-python@v1
       with:
         python-version: 3.7
