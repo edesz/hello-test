@@ -2,4 +2,4 @@ flask==1.1.2
 jupyter==1.0.0
 requests==2.23.0
 pytest==5.4.2
-numpy
+numpy==1.18.4
