@@ -9,30 +9,27 @@ def test_show_msg():
 
 
 @pytest.mark.parametrize("num_pods", (3,))
-@pytest.mark.repeat(10)
-@pytest.mark.applymanifests("configs", files=["dask.yaml"])
-def test_dask_deployment(kube, kubeconfig, num_pods):
-    """Test a Dask worker deployment with n > 1 replicas."""
-
-    assert kubeconfig == "~/.kube/config"
+@pytest.mark.repeat(3)
+@pytest.mark.applymanifests('configs', files=[
+    'nginx.yaml'
+])
+def test_nginx(kube):
+    """An example test against an Nginx deployment."""
 
     # wait for the manifests loaded by the 'applymanifests' marker
     # to be ready on the cluster
-    kube.wait_for_registered(timeout=60)
+    kube.wait_for_registered(timeout=30)
 
     deployments = kube.get_deployments()
-    # print(len(deployments))
-
-    nginx_deploy = deployments.get("dask-worker")
+    nginx_deploy = deployments.get('nginx-deployment')
     assert nginx_deploy is not None
 
     pods = nginx_deploy.get_pods()
-    # print(len(pods))
-    assert len(pods) == num_pods, f"dask should deploy with {num_pods} replicas"
+    assert len(pods) == 3, 'nginx should deploy with three replicas'
 
     for pod in pods:
         containers = pod.get_containers()
-        # print(len(containers))
-        assert (
-            len(containers) == 1
-        ), "dask worker pods should have one container"
+        assert len(containers) == 1, 'nginx pod should have one container'
+
+        resp = pod.http_proxy_get('/')
+        assert '<h1>Welcome to nginx!</h1>' in resp
