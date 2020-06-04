@@ -1,6 +1,6 @@
 name: CI
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
@@ -14,9 +14,8 @@ jobs:
         kubernetes version: 'v1.18.2'
     - name: Interact with the cluster
       run: |
-        kubectl get pods
-        ls -la ~/.kube
         export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
+        ls -la ~/.kube
     - uses: actions/setup-python@v1
       with:
         python-version: 3.7
