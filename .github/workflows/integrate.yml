@@ -18,8 +18,7 @@ jobs:
         kubectl cluster-info
         ls -la ~/.kube
         cat ~/.kube/config
-        minikube start
-        minikube addons enable ingress
+        minikube --version
     - uses: actions/setup-python@v1
       with:
         python-version: 3.8
