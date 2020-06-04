@@ -15,7 +15,9 @@ jobs:
     - name: Interact with the cluster
       run: |
         export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
+        kubectl cluster-info
         ls -la ~/.kube
+        cat ~/.kube/config
     - uses: actions/setup-python@v1
       with:
         python-version: 3.7
