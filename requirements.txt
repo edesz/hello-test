@@ -4,4 +4,4 @@ requests==2.23.0
 pytest==5.4.2
 pytest-repeat
 numpy==1.18.4
-kubetest
+kubetest==0.8.1
