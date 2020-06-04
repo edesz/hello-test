@@ -16,6 +16,7 @@ jobs:
       run: |
         kubectl get pods
         ls -la ~/.kube
+        export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
     - uses: actions/setup-python@v1
       with:
         python-version: 3.7
