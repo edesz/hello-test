@@ -7,6 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Minikube
+      uses: manusa/actions-setup-minikube@v1.0.2
+      with:
+        minikube version: 'v1.9.2'
+        kubernetes version: 'v1.18.2'
+    - name: Interact with the cluster
+      run: kubectl get pods
     - uses: actions/setup-python@v1
       with:
         python-version: 3.7
@@ -15,10 +22,3 @@ jobs:
         pip install tox
         tox -e lint
         tox -e test
-    - name: Setup Minikube
-      uses: manusa/actions-setup-minikube@v1.0.2
-      with:
-        minikube version: 'v1.9.2'
-        kubernetes version: 'v1.18.2'
-    - name: Interact with the cluster
-      run: kubectl get pods
