@@ -14,7 +14,7 @@ def test_show_msg():
 @pytest.mark.parametrize("num_pods", (3,))
 @pytest.mark.repeat(1)
 @pytest.mark.applymanifests("configs", files=["nginx.yaml"])
-def test_nginx(kube):
+def test_nginx(kube, kubeconfig, num_pods):
     """An example test against an Nginx deployment."""
 
     # wait for the manifests loaded by the 'applymanifests' marker
@@ -26,7 +26,7 @@ def test_nginx(kube):
     assert nginx_deploy is not None
 
     pods = nginx_deploy.get_pods()
-    assert len(pods) == 3, "nginx should deploy with three replicas"
+    assert len(pods) == num_pods, f"nginx should deploy with {num_pods} replicas"
 
     for pod in pods:
         containers = pod.get_containers()
