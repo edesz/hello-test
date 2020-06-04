@@ -13,7 +13,9 @@ jobs:
         minikube version: 'v1.9.2'
         kubernetes version: 'v1.18.2'
     - name: Interact with the cluster
-      run: kubectl get pods
+      run: |
+        kubectl get pods
+        ls -la ~/.kube
     - uses: actions/setup-python@v1
       with:
         python-version: 3.7
