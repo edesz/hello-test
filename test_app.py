@@ -26,7 +26,7 @@ def test_nginx(kube, kubeconfig, num_pods):
     assert nginx_deploy is not None
 
     pods = nginx_deploy.get_pods()
-    assert len(pods) == num_pods, f"nginx should deploy with {num_pods} replicas"
+    assert len(pods) == num_pods, f"nginx expected with {num_pods} replicas"
 
     for pod in pods:
         containers = pod.get_containers()
