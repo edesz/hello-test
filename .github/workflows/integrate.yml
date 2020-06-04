@@ -18,12 +18,12 @@ jobs:
         kubectl cluster-info
         ls -la ~/.kube
         cat ~/.kube/config
-        minikube --help
-        minikube addons enable ingress
-        kubectl get pods -n kube-system
-        kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
-        kubectl expose deployment web --type=NodePort --port=8080
-        kubectl get service web
+        # minikube --help
+        # minikube addons enable ingress
+        # kubectl get pods -n kube-system
+        # kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+        # kubectl expose deployment web --type=NodePort --port=8080
+        # kubectl get service web
       env:
         CHANGE_MINIKUBE_NONE_USER: true
     - uses: actions/setup-python@v1
