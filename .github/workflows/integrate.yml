@@ -12,12 +12,15 @@ jobs:
       with:
         minikube version: 'v1.11.0'
         kubernetes version: 'v1.18.2'
+      env:
+        CHANGE_MINIKUBE_NONE_USER: true
     - name: Interact with the cluster
       run: |
         export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
         kubectl cluster-info
         ls -la ~/.kube
         cat ~/.kube/config
+        minikube --version
     - uses: actions/setup-python@v1
       with:
         python-version: 3.8
