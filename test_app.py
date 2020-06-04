@@ -13,7 +13,7 @@ def test_show_msg():
 @pytest.mark.applymanifests('configs', files=[
     'nginx.yaml'
 ])
-def test_nginx(kube):
+def test_nginx(kube, kubeconfig, num_pods):
     """An example test against an Nginx deployment."""
 
     # wait for the manifests loaded by the 'applymanifests' marker
