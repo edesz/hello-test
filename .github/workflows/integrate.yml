@@ -15,3 +15,10 @@ jobs:
         pip install tox
         tox -e lint
         tox -e test
+    - name: Setup Minikube
+      uses: manusa/actions-setup-minikube@v1.0.2
+      with:
+        minikube version: 'v1.9.2'
+        kubernetes version: 'v1.18.2'
+    - name: Interact with the cluster
+      run: kubectl get pods
