@@ -31,6 +31,3 @@ def test_nginx(kube, kubeconfig, num_pods):
     for pod in pods:
         containers = pod.get_containers()
         assert len(containers) == 1, "nginx pod should have one container"
-
-        resp = pod.http_proxy_get("/")
-        assert "<h1>Welcome to nginx!</h1>" in resp
