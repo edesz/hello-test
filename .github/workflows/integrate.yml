@@ -28,8 +28,8 @@ jobs:
 #         CHANGE_MINIKUBE_NONE_USER: true
     - uses: opsgang/ga-setup-minikube@v0.1.1
       with:
-        minikube-version: 1.4.0
-        k8s-version: 1.15.1
+        minikube-version: 1.11.0
+        k8s-version: 1.18.2
     - name: Testing
       run: |
         minikube config set vm-driver kvm2
