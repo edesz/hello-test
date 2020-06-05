@@ -3,56 +3,34 @@ name: CI
 on: [push]
 
 jobs:
-  minikube-test:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Minikube setup with registry
-      uses: EnMasseProject/minikube-setup@v1.1.6
+    - uses: actions/checkout@v2
+    - name: Setup Minikube
+      uses: manusa/actions-setup-minikube@v1.0.2
       with:
-        k8s-version: 1.15.0
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-# #     - name: Setup Minikube
-# #       uses: manusa/actions-setup-minikube@v1.0.2
-# #       with:
-# #         minikube version: 'v1.11.0'
-# #         kubernetes version: 'v1.18.2'
-# #     - name: Interact with the cluster
-# #       run: |
-# #         export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
-# #         kubectl cluster-info
-# #         ls -la ~/.kube
-# #         cat ~/.kube/config
-# #         # minikube --help
-# #         # minikube addons enable ingress
-# #         # kubectl get pods -n kube-system
-# #         # kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
-# #         # kubectl expose deployment web --type=NodePort --port=8080
-# #         # kubectl get service web
-# #       env:
-# #         CHANGE_MINIKUBE_NONE_USER: true
-#     - uses: opsgang/ga-setup-minikube@v0.1.1
-#       with:
-#         minikube-version: 1.11.0
-#         k8s-version: 1.18.2
-#     - name: Testing
-#       run: |
-#         minikube config set vm-driver kvm2
-#         minikube config set kubernetes-version=v1.15.1
-#         minikube start
-#         minikube update-context
-#         kubectl cluster-info
-#         kubectl get pods -n kube-system
-#     - uses: actions/setup-python@v1
-#       with:
-#         python-version: 3.8
-#     - run: |
-#         python -m pip install --upgrade pip
-#         pip install tox
-#         tox -e lint
-#         tox -e test
+        minikube version: 'v1.11.0'
+        kubernetes version: 'v1.18.2'
+    - name: Interact with the cluster
+      run: |
+        export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
+        kubectl cluster-info
+        ls -la ~/.kube
+        cat ~/.kube/config
+        # minikube --help
+        minikube addons enable ingress
+        # kubectl get pods -n kube-system
+        # kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+        # kubectl expose deployment web --type=NodePort --port=8080
+        # kubectl get service web
+      env:
+        CHANGE_MINIKUBE_NONE_USER: true
+    - uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - run: |
+        python -m pip install --upgrade pip
+        pip install tox
+        tox -e lint
+        tox -e test
