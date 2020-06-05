@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Minikube setup with registry
-      uses: EnMasseProject/minikube-setup@v1.0.4
+      uses: EnMasseProject/minikube-setup@v1.1.6
       with:
         k8s-version: 1.15.0
 
