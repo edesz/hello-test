@@ -7,25 +7,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Minikube
-      uses: manusa/actions-setup-minikube@v1.0.2
+#     - name: Setup Minikube
+#       uses: manusa/actions-setup-minikube@v1.0.2
+#       with:
+#         minikube version: 'v1.11.0'
+#         kubernetes version: 'v1.18.2'
+#     - name: Interact with the cluster
+#       run: |
+#         export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
+#         kubectl cluster-info
+#         ls -la ~/.kube
+#         cat ~/.kube/config
+#         # minikube --help
+#         # minikube addons enable ingress
+#         # kubectl get pods -n kube-system
+#         # kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
+#         # kubectl expose deployment web --type=NodePort --port=8080
+#         # kubectl get service web
+#       env:
+#         CHANGE_MINIKUBE_NONE_USER: true
+    - uses: opsgang/ga-setup-minikube@v0.1.1
       with:
-        minikube version: 'v1.11.0'
-        kubernetes version: 'v1.18.2'
-    - name: Interact with the cluster
+        minikube-version: 1.4.0
+        k8s-version: 1.15.1
+    - name: Testing
       run: |
-        export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
+        minikube config set vm-driver kvm2
+        minikube config set kubernetes-version=v1.15.1
+        minikube start
+        minikube update-context
         kubectl cluster-info
-        ls -la ~/.kube
-        cat ~/.kube/config
-        # minikube --help
-        # minikube addons enable ingress
-        # kubectl get pods -n kube-system
-        # kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
-        # kubectl expose deployment web --type=NodePort --port=8080
-        # kubectl get service web
-      env:
-        CHANGE_MINIKUBE_NONE_USER: true
+        kubectl get pods -n kube-system
     - uses: actions/setup-python@v1
       with:
         python-version: 3.8
