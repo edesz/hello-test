@@ -6,46 +6,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Setup Minikube
-      id: minikube
-      uses: CodingNagger/minikube-setup-action@v1.0.2
-    - name: Launch Minikube
-      run: eval ${{ steps.minikube.outputs.launcher }}
-    - name: Check pods
+      uses: manusa/actions-setup-minikube@v1.0.2
+      with:
+        minikube version: 'v1.11.0'
+        kubernetes version: 'v1.18.2'
+    - name: Interact with the cluster
       run: |
-        kubectl get pods
-        minikube addons enable ingress
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Setup Minikube
-#       uses: manusa/actions-setup-minikube@v1.0.2
-#       with:
-#         minikube version: 'v1.11.0'
-#         kubernetes version: 'v1.18.2'
-#     - name: Interact with the cluster
-#       run: |
-#         export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
-#         kubectl cluster-info
-#         ls -la ~/.kube
-#         cat ~/.kube/config
-#         # minikube --help
-#         # minikube addons enable ingress
-#         # kubectl get pods -n kube-system
-#         # kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
-#         # kubectl expose deployment web --type=NodePort --port=8080
-#         # kubectl get service web
-#       env:
-#         CHANGE_MINIKUBE_NONE_USER: true
-#     - uses: actions/setup-python@v1
-#       with:
-#         python-version: 3.8
-#     - run: |
-#         python -m pip install --upgrade pip
-#         pip install tox
-#         tox -e lint
-#         tox -e test
+        export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
+        kubectl cluster-info
+        ls -la ~/.kube
+        cat ~/.kube/config
+      env:
+        CHANGE_MINIKUBE_NONE_USER: true
+    - uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - run: |
+        python -m pip install --upgrade pip
+        pip install tox
+        tox -e lint
+        tox -e test
