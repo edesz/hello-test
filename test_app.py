@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from app import show_msg
-
+import pytest
 from kubernetes import client, config
 
 
