@@ -2,7 +2,7 @@ flask==1.1.2
 jupyter==1.0.0
 numpy==1.19.1
 requests==2.24.0
-pytest==5.4.3
+pytest==6.0.0
 pytest-repeat==0.8.0
 kubetest==0.8.1
 kubernetes==11.0.0
