@@ -7,7 +7,7 @@ ACTION=${1:-create}
 if [[ $ACTION == "clone" ]]
 then
     # (OPTION 1) clone a project containing requirements.txt
-    git clone <project_url>
+    git clone <repository url here>
 if [[ $ACTION == "create" ]]
 then
     # (OPTION 2) create requirements.txt
