@@ -4,7 +4,7 @@ numpy==1.19.4
 requests==2.25.0
 pytest==6.2.1
 pytest-repeat==0.9.1
-kubetest==0.8.1
+kubetest==0.9.3
 kubernetes==12.0.1
 
 rsa>=4.1 # not directly required, pinned by Snyk to avoid a vulnerability
